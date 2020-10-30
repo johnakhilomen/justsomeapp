@@ -1,17 +1,18 @@
 //Front end development
 //default function
-     
+ const labelsArray = ["Firstname", "Lastname", "Phone", "Address", "Emailaddress"]    
 //The default function's job is to call other functions to do their jobs      
 function init()
 {
     renderPageTitle("A new Page title", "Page's sub title!");
-    renderInputFields(["Firstname", "Lastname", "Phone", "Address", "Emailaddress"]);
+    renderInputFields(labelsArray);
     $("main").append(`<br>`);
     //render submit button
     renderButton("submit", "Submit", "submitButton");
     //immediately attach an event to submit button
     submitForm();
     renderButton("reset", "Reset", "resetButton");
+    resetForm();
 }
 
 function renderInputFields(labelArray)
@@ -72,6 +73,18 @@ function submitForm()
 function getValue(field)
 {
     return $(`#${field}`).val();
+}
+
+function resetForm() {
+    $("#resetButton").click(()=> {
+       labelsArray.forEach((label)=> {clearField(label) })
+
+    })
+
+}
+
+function clearField(text) {
+     $(`#${text}`).val("");
 }
 //Invoke my default function with jquery
 $(init);
